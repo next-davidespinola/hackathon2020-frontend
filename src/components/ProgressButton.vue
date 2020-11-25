@@ -1,23 +1,10 @@
 <template>
   <div class="progress-button-container">
-    <v-btn
-      class="ma-2"
-      outlined
-      large
-      fab
-      color="white"
-      @click="progressButtonClicked()"
-    >
-      <v-progress-circular
-        :rotate="90"
-        :size="size"
-        :width="width"
-        :value="progressValue"
-        :color="color"
-      >
+    <v-btn class="ma-2" outlined large fab color="white" @click="$emit('click')">
+      <v-progress-circular :rotate="90" :size="size" :width="width" :value="progressValue" :color="color">
         <div v-if="level" class="d-flex flex-column align-center">
-          <h1> {{level}} </h1>
-          <p> Nivel </p>
+          <h1>{{ level }}</h1>
+          <p>Nivel</p>
         </div>
 
         <v-icon v-else large>
@@ -43,18 +30,13 @@ export default {
   computed: {
     progressValue() {
       if (!this.currentValue || !this.maxValue) {
-        return 100;
+        return 100
       }
-      return this.currentValue * 100 / this.maxValue;
+      return (this.currentValue * 100) / this.maxValue
     }
   },
   data: () => ({
     //
-  }),
-  methods: {
-    progressButtonClicked(index) {
-      alert("Progress Button Clicked");
-    },
-  }
+  })
 }
 </script>

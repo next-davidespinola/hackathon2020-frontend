@@ -1,8 +1,9 @@
 <template>
-  <v-dialog v-model="open" scrollable max-width="600px">
-    <v-card>
-      <div class="d-flex justify-end">
-        <v-btn icon class="d-flex justify-end ma-2" @click="close()">
+  <v-dialog v-model="open" scrollable fullscreen transition="slide-y-reverse-transition" origin="center bottom">
+    <v-card class="white--text" :class="{ [options.backgroundColor]: !!options.backgroundColor }">
+      <div class="d-flex justify-space-between">
+        <h1 class="text-h5 ml-3 my-3">{{ options.title }}</h1>
+        <v-btn icon class="white--text ma-2" @click="close()">
           <v-icon>mdi-close</v-icon>
         </v-btn>
       </div>
@@ -25,6 +26,10 @@ export default {
     },
     data() {
       return state.data
+    },
+    options() {
+      const { backgroundColor, title } = state.options || {}
+      return { backgroundColor, title }
     }
   },
   methods: {
