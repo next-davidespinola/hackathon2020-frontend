@@ -11,7 +11,9 @@
           level="5"
           size="90"
           width="9"
-          color="red"
+          color="light-blue lighten-3"
+          :maxValue="nextLevelPoints"
+          :currentValue="currentLevelPoints"
         />
       </v-list-item-avatar>
       <v-list-item-content>
@@ -34,7 +36,8 @@ export default {
     ProgressButton
   },
   data: () => ({
-    //
+    currentLevelPoints: 80,
+    nextLevelPoints: 100,
   })
 }
 </script>

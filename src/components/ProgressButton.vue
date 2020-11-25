@@ -6,11 +6,13 @@
       large
       fab
       color="white"
+      @click="progressButtonClicked()"
     >
       <v-progress-circular
+        :rotate="90"
         :size="size"
         :width="width"
-        :value="70"
+        :value="progressValue"
         :color="color"
       >
         <div v-if="level" class="d-flex flex-column align-center">
@@ -19,7 +21,7 @@
         </div>
 
         <v-icon v-else large>
-          mdi-diamond-stone
+          {{ icon }}
         </v-icon>
       </v-progress-circular>
     </v-btn>
@@ -33,10 +35,26 @@ export default {
     level: String,
     color: String,
     size: String,
-    width: String
+    width: String,
+    icon: String,
+    maxValue: Number,
+    currentValue: Number
+  },
+  computed: {
+    progressValue() {
+      if (!this.currentValue || !this.maxValue) {
+        return 100;
+      }
+      return this.currentValue * 100 / this.maxValue;
+    }
   },
   data: () => ({
     //
-  })
+  }),
+  methods: {
+    progressButtonClicked(index) {
+      alert("Progress Button Clicked");
+    },
+  }
 }
 </script>

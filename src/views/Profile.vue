@@ -9,7 +9,10 @@
         :key="index"
         size="60"
         width="5"
-        color="purple"
+        :color="item.color"
+        :icon="item.icon"
+        :maxValue="item.maxValue"
+        :currentValue="item.currentValue"
       />
     </div>
   </div>
@@ -31,9 +34,30 @@ export default {
   data() {
     return {
       items: [
-        { mensaje: 'Foo' },
-        { mensaje: 'Bar' },
-        { mensaje: 'Bar' }
+        {
+          color: 'amber lighten-2',
+          icon: 'mdi-bullseye-arrow',
+          maxValue: 100,
+          currentValue: 70
+        },
+        {
+          color: 'deep-purple lighten-2',
+          icon: 'mdi-cart',
+          maxValue: 100,
+          currentValue: 100
+        },
+        {
+          color: 'green lighten-1',
+          icon: 'mdi-flag-checkered',
+          maxValue: 10,
+          currentValue: 5
+        },
+        {
+          color: 'light-blue lighten-3',
+          icon: 'mdi-bag-personal',
+          maxValue: 100,
+          currentValue: 30
+        }
       ]
     }
   },
