@@ -5,10 +5,10 @@
   >
     <v-list-item>
       <v-list-item-avatar
-        tile
-        size="80"
-        color="grey"
-      ></v-list-item-avatar>
+        size="100"
+      >
+        <ProgressButton/>
+      </v-list-item-avatar>
       <v-list-item-content>
         <v-list-item-title class="headline mb-1">
           Headline 5
@@ -21,9 +21,13 @@
 </template>
 
 <script>
+import ProgressButton from '@/components/ProgressButton.vue'
+
 export default {
   name: 'UserInfoCard',
-
+  components: {
+    ProgressButton
+  },
   data: () => ({
     //
   })
