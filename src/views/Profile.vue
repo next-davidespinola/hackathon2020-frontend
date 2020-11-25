@@ -6,7 +6,11 @@
     <div class="options-container d-flex justify-space-between">
       <ProgressButton
         v-for="(item, index) in items"
-        :key="index"/>
+        :key="index"
+        size="60"
+        width="5"
+        color="purple"
+      />
     </div>
   </div>
 </template>

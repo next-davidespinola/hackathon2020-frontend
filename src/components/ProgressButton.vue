@@ -8,10 +8,10 @@
       color="white"
     >
       <v-progress-circular
-        :size="60"
-        :width="5"
+        :size="size"
+        :width="width"
         :value="70"
-        color="primary"
+        :color="color"
       >
         <div v-if="level" class="d-flex flex-column align-center">
           <h1> {{level}} </h1>
@@ -31,6 +31,9 @@ export default {
   name: 'ProgressButton',
   props: {
     level: Number,
+    color: String,
+    size: String,
+    width: String
   },
   data: () => ({
     //

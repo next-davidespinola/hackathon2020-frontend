@@ -7,7 +7,12 @@
       <v-list-item-avatar
         size="100"
       >
-        <ProgressButton/>
+        <ProgressButton
+          level="5"
+          size="90"
+          width="9"
+          color="red"
+        />
       </v-list-item-avatar>
       <v-list-item-content>
         <v-list-item-title class="headline mb-1">
