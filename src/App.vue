@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-main class="pt-6 pb-6 pl-4 pr-4">
+    <v-main>
       <router-view></router-view>
     </v-main>
     <GlobalDialog />

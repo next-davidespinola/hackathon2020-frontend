@@ -1,12 +1,12 @@
 <template>
-  <div class="white--text d-flex flex-column align-center profile-view-container">
+  <div class="white--text d-flex flex-column align-center profile-view-container pt-6 pb-6 pl-4 pr-4">
     <UserInfoCard />
-    <UserAvatar />
+    <UserAvatar class="flex-grow-1"/>
     <div class="options-container d-flex justify-space-between">
       <ProgressButton
         v-for="(item, index) in items"
         :key="index"
-        size="60"
+        size="56"
         width="5"
         :color="item.color"
         :icon="item.icon"

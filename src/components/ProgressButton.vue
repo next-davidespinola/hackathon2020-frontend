@@ -1,6 +1,6 @@
 <template>
   <div class="progress-button-container">
-    <v-btn class="ma-2" large fab color="white" elevation="0" @click="$emit('click')">
+    <v-btn class="ma-2" medium fab color="white" elevation="0" @click="$emit('click')">
       <v-progress-circular :rotate="90" :size="size" :width="width" :value="progressValue" :color="color">
         <div v-if="level" class="d-flex flex-column align-center">
           <h1>{{ level }}</h1>
