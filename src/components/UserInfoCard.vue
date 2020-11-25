@@ -1,11 +1,13 @@
 <template>
   <v-card
-    class="mx-auto"
+    class=""
+    rounded="xl"
+    min-width="296"
     outlined
   >
     <v-list-item>
       <v-list-item-avatar
-        size="100"
+        size="90"
       >
         <ProgressButton
           level="5"
@@ -17,11 +19,21 @@
         />
       </v-list-item-avatar>
       <v-list-item-content>
-        <v-list-item-title class="headline mb-1">
-          Headline 5
+        <v-list-item-title class="text-h4 font-weight-bold mb-1">
+          José
         </v-list-item-title>
-        <v-list-item-subtitle>Greyhound divisely hello coldly fonwderfully</v-list-item-subtitle>
-        <v-list-item-subtitle>Greyhound divisely hello coldly fonwderfully</v-list-item-subtitle>
+        <v-list-item-subtitle class="text-body-1 font-weight-regular amber--text lighten-2">
+          <v-icon class="amber--text lighten-2" small>
+            mdi-cash-multiple
+          </v-icon>
+          10 Euros
+        </v-list-item-subtitle>
+        <v-list-item-subtitle class="text-body-1 font-weight-regular deep-purple--text lighten-2">
+          <v-icon class="deep-purple--text lighten-2" small>
+            mdi-diamond-stone
+          </v-icon>
+          800 Gemas
+        </v-list-item-subtitle>
       </v-list-item-content>
     </v-list-item>
   </v-card>

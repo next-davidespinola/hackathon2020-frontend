@@ -1,11 +1,11 @@
 <template>
-  <div class="progress-button-container">
+  <div class="transparent progress-button-container">
     <v-btn
       class="ma-2"
-      outlined
-      large
       fab
+      large
       color="white"
+      elevation="0"
       @click="progressButtonClicked()"
     >
       <v-progress-circular
