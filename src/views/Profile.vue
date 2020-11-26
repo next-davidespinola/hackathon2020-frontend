@@ -79,7 +79,7 @@ export default {
   },
   methods: {
     getVideoUrl() {
-      return require('../assets/space.mp4')
+      return require('../assets/videos/space.mp4')
     },
     async openObjectives() {
       const { default: component } = await import('./Objectives.vue')
