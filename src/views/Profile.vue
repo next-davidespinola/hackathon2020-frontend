@@ -1,7 +1,7 @@
 <template>
   <div class="white--text d-flex flex-column align-center profile-view-container pt-6 pb-6 pl-4 pr-4">
     <video autoplay muted loop id="myVideo">
-      <source :src="getVideoUrl()" type="video/mp4">
+      <source :src="getVideoUrl()" type="video/mp4" />
       Your browser does not support HTML5 video.
     </video>
     <UserInfoCard />
@@ -27,6 +27,7 @@ import UserInfoCard from '@/components/UserInfoCard.vue'
 import UserAvatar from '@/components/UserAvatar.vue'
 import ProgressButton from '@/components/ProgressButton.vue'
 import { openDialog } from '../components/dialog'
+import ProfileService from '@/services/ProfileService'
 
 export default {
   name: 'Profile',
@@ -35,8 +36,15 @@ export default {
     UserAvatar,
     ProgressButton
   },
+  async beforeRouteEnter(to, from, next) {
+    const player = await ProfileService.getPlayer(to.query.id)
+    next(vm => {
+      vm.player = player
+    })
+  },
   data() {
     return {
+      player: null,
       items: [
         {
           color: 'amber lighten-2',
@@ -71,7 +79,7 @@ export default {
   },
   methods: {
     getVideoUrl() {
-      return require('../assets/space.mp4');
+      return require('../assets/space.mp4')
     },
     async openObjectives() {
       const { default: component } = await import('./Objectives.vue')
@@ -96,6 +104,9 @@ export default {
       const { default: component } = await import('./Inventory.vue')
       const result = await openDialog(component, { backgroundColor: 'light-blue lighten-1', title: 'Mi mochila' }, {})
       console.log('dialog closed with result:', result)
+    },
+    async refresh() {
+      this.player = ProfileService.getPlayer(this.$route.query.id)
     }
   }
 }
