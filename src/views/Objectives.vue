@@ -9,7 +9,7 @@
       :cardColor="'gold darken-6'"
     >
       <div class="pt-4 pr-4 pl-4">
-        <p class="text-h4 font-weight-medium"> 80 Euros </p>
+        <p class="text-h4 font-weight-medium"> {{ currentMoney }} </p>
         <p class="text-body-1 font-weight-normal grey--text text--lighten-5"> ¡Muy bien estas ahorrando un motón! </p>
       </div>
       <v-divider class="border-bold grey text"></v-divider>
@@ -31,31 +31,30 @@
       outlined
       max-width="421"
     >
-      <v-list-item>
+      <v-list-item v-if="objective">
         <v-list-item-content class="pa-0">
           <v-list-item-title class="text-h6 text-sm-h4 text-center font-weight-bold mb-7">
-            Comprar una consola
+            {{ objective.name }}
           </v-list-item-title>
           <div>
-            <p class="text-sm-body-1 mb-2 text-left gold--text"> Tienes {{ currentPoints }} puntos </p>
-            <v-progress-linear :value="currentPoints" rounded height="10" color="gold"></v-progress-linear>
-            <p class="mt-2 text-sm-body-1 text-right blue--text text--darken-2"> Sube de nivel con 120 puntos </p>
+            <p class="text-sm-body-1 mb-2 text-left gold--text"> Tienes {{ currentMoney }} euros </p>
+            <v-progress-linear :value="progressValue" rounded height="10" color="gold"></v-progress-linear>
+            <p class="mt-2 text-sm-body-1 text-right blue--text text--darken-2"> Tu objetivo es {{ objective.requiredMoney }} Euros </p>
             <p class="mt-2 text-h6 font-weight-medium text-center grey--text text--darken-1">
-              ¡Te faltan <b class="black--text"> 40 euros </b> para alcanzar tu meta!
+              ¡Te faltan <b class="black--text"> {{ objective.requiredMoney - currentMoney }} euros </b> para alcanzar tu meta!
             </p>
           </div>
         </v-list-item-content>
       </v-list-item>
-      <v-card-actions class="pa-0">
+      <v-card-actions v-if="objective" class="pa-0">
         <div class="d-flex justify-center mt-2">
-          <!-- <v-btn @click="$emit('click')" class="white--text" color="light-blue">
-            CAMBIAR OBJETIVO
-          </v-btn> -->
-          <ChangeGoalDialog />
+          <ChangeGoalDialog
+            :goalId="objective.id"
+            @update="updateObjective($event)"
+          />
         </div>
       </v-card-actions>
     </v-card>
-
   </div>
 </template>
 
@@ -69,10 +68,36 @@ export default {
     ImageInfoSection,
     ChangeGoalDialog
   },
+  props: {
+    data: {
+      type: Object,
+      required: true
+    }
+  },
+  mounted() {
+    this.objective = this.data.objectiveDetail;
+    this.currentMoney = this.data.currentMoney;
+  },
+  computed: {
+    progressValue() {
+      if (!this.objective) return 0;
+      return (this.currentMoney * 100) / this.objective.requiredMoney
+    }
+  },
   data: () => ({
-    currentPoints: 80,
-    imgSrc: 'cash.png'
+    objective: null,
+    currentMoney: 80,
+    imgSrc: 'cash.png',
+    goalDescription: '',
+    objectiveDetail: {},
+    goalPrice: null
   }),
-  methods: {}
+  methods: {
+    updateObjective(ev) {
+      this.objective.requiredMoney = ev.price;
+      this.objective.name = ev.name;
+      this.objective.id++;
+    }
+  }
 }
 </script>

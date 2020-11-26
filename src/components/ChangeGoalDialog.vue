@@ -45,31 +45,41 @@
           <v-btn class="light-blue--text" text @click="close()">
             CANCELAR
           </v-btn>
-          <v-btn class="white--text" color="light-blue" @click="close()">
+          <v-btn class="white--text" color="light-blue" @click="save()">
             GUARDAR
           </v-btn>
         </v-card-actions>
-
       </v-card>
     </v-dialog>
   </div>
 </template>
 
 <script>
+import ObjectivesService from '@/services/ObjectivesService'
+
 export default {
   name: 'ChangeGoalDialog',
   props: {
+    goalId: Number
   },
   data: () => ({
     open: false,
     goalDescription: '',
-    goalPrice: null
+    goalPrice: null,
   }),
   methods: {
     close() {
       this.goalDescription = '';
       this.goalPrice = null;
       this.open = false;
+    },
+    async save() {
+      await ObjectivesService.editObjective(this.goalId, this.goalDescription, this.goalPrice);
+      this.$emit('update', {
+        name: this.goalDescription,
+        price: this.goalPrice
+      });
+      this.close();
     }
   }
 }

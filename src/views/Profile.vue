@@ -32,6 +32,7 @@ import { openDialog } from '../components/dialog'
 import ProfileService from '@/services/ProfileService'
 import { getUsingItemResource } from '../utils/shopItemImages'
 import ShopService from '@/services/ShopService'
+import ObjectivesService from '@/services/ObjectivesService'
 
 export default {
   name: 'Profile',
@@ -94,8 +95,8 @@ export default {
       return require('@/' + getUsingItemResource(this.backgroundId))
     },
     async openObjectives() {
-      const { default: component } = await import('./Objectives.vue')
-      const result = await openDialog(component, { backgroundColor: 'gold', title: 'Mis objetivos' }, {})
+      const [{ default: component }, objectiveDetail] = await Promise.all([import('./Objectives.vue'), ObjectivesService.getObjective()])
+      const result = await openDialog(component, { backgroundColor: 'gold', title: 'Mis objetivos' }, {objectiveDetail, currentMoney: this.player.money})
       console.log('dialog closed with result:', result)
     },
     async openShop() {

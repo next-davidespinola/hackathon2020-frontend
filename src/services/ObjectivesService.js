@@ -10,8 +10,8 @@ export default {
 }
 
 async function getObjective() {
-  const { objectives } = await axios.get(`${OBJECTIVES_BASE_URL}`)
-  return sortBy(objectives, obj => -obj.id)[0]
+  const { data } = await axios.get(`${OBJECTIVES_BASE_URL}`)
+  return sortBy(data, obj => -obj.id)[0]
 }
 
 async function editObjective(id, name, requiredMoney) {
@@ -20,5 +20,5 @@ async function editObjective(id, name, requiredMoney) {
 }
 
 async function createObjective(name, requiredMoney) {
-  await axios.post(`${OBJECTIVES_BASE_URL}`, { name, requiredMoney })
+  return await axios.post(`${OBJECTIVES_BASE_URL}`, { name, requiredMoney })
 }
