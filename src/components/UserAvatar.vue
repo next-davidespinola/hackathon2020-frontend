@@ -1,6 +1,6 @@
 <template>
   <v-container class="d-flex flex-column align-center">
-    <v-img contain src="../assets/images/avatar.png"></v-img>
+    <v-img contain src="../assets/images/avatar.svg"></v-img>
   </v-container>
 </template>
 
