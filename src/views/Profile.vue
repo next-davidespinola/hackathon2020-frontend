@@ -1,6 +1,6 @@
 <template>
   <div class="white--text d-flex flex-column align-center justify-space-between profile-view-container pt-6 pb-6 pl-4 pr-4">
-    <video autoplay muted loop id="myVideo">
+    <video v-if="backgroundId" autoplay muted loop id="myVideo">
       <source :src="getVideoUrl()" type="video/mp4" />
       Your browser does not support HTML5 video.
     </video>
@@ -28,6 +28,7 @@ import UserAvatar from '@/components/UserAvatar.vue'
 import ProgressButton from '@/components/ProgressButton.vue'
 import { openDialog } from '../components/dialog'
 import ProfileService from '@/services/ProfileService'
+import { getUsingItemResource } from '../utils/shopItemImages'
 
 export default {
   name: 'Profile',
@@ -77,9 +78,17 @@ export default {
       ]
     }
   },
+  computed: {
+    backgroundId() {
+      const usedItem = ((this.player || {}).inventory || []).find((item) => {
+        return item.used && item.type === 'background';
+      })
+      return usedItem ? usedItem.id : null;
+    }
+  },
   methods: {
     getVideoUrl() {
-      return require('../assets/videos/space.mp4')
+      return require('@/' + getUsingItemResource(this.backgroundId));
     },
     async openObjectives() {
       const { default: component } = await import('./Objectives.vue')

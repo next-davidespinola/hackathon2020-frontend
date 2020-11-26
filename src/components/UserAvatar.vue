@@ -21,7 +21,7 @@ export default {
   computed: {
     petId() {
       const usedItem = this.inventory.find((item) => {
-        return item.used;
+        return item.used && item.type === 'pet';
       })
       return usedItem ? usedItem.id : null;
     }
