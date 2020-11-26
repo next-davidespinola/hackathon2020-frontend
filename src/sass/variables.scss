@@ -2,3 +2,32 @@ $progress-circular-underlay-stroke: none;
 $btn-active-opacity: 0;
 $btn-focus-opacity: 0;
 $btn-hover-opacity: 0;
+
+// global extra color classes
+.gold {
+  background-color: #A0811E !important;
+}
+
+.gold.darken-6 {
+  background-color: #604C11 !important;
+}
+
+.grey.lighten-6 {
+  background-color: #CCFFFFFF !important;
+}
+
+.deep-green {
+  background-color: #3B6F3E !important;
+}
+
+.border-bold {
+  border: 1px solid;
+}
+
+.v-progress-linear__determinate {
+  height: inherit;
+  left: 0;
+  position: absolute;
+  transition: inherit;
+  border-radius: 4px;
+}
