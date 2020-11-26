@@ -1,0 +1,36 @@
+// global extra color classes
+.gold {
+  background-color: #A0811E !important;
+}
+
+.gold.darken-6 {
+  background-color: #604C11 !important;
+}
+
+.grey.lighten-6 {
+  background-color: #CCFFFFFF !important;
+}
+
+.deep-green {
+  background-color: #3B6F3E !important;
+}
+
+.deep-blue {
+  background-color: #367299 !important;
+}
+
+.deep-purple.darken-6 {
+  background-color: #3C2A5C !important;
+}
+
+.border-bold {
+  border: 1px solid;
+}
+
+.v-progress-linear__determinate {
+  height: inherit;
+  left: 0;
+  position: absolute;
+  transition: inherit;
+  border-radius: 4px;
+}
