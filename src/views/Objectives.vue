@@ -3,7 +3,9 @@
     class="d-flex flex-column text-center"
     title="Tu ahorro"
     titleIcon="mdi-cash-multiple"
+    titleColor="amber"
     :imgSrc="imgSrc"
+    :cardColor="'gold darken-6'"
   >
     <div class="pt-4 pr-4 pl-4">
       <p class="text-h4 font-weight-medium"> 80 Euros </p>

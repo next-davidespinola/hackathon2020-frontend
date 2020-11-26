@@ -16,7 +16,18 @@ $btn-hover-opacity: 0;
   background-color: #CCFFFFFF !important;
 }
 
+.deep-green {
+  background-color: #3B6F3E !important;
+}
+
 .border-bold {
   border: 1px solid;
 }
 
+.v-progress-linear__determinate {
+  height: inherit;
+  left: 0;
+  position: absolute;
+  transition: inherit;
+  border-radius: 4px;
+}

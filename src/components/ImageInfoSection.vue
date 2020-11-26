@@ -4,11 +4,11 @@
     class="white--text"
     rounded="xl"
     outlined
-    color="gold darken-6"
+    :color="cardColor"
   >
-    <div class="pt-4 pr-4 pl-4 text-body-1 font-weight-medium amber--text lighten-3 d-flex flex-row align-center justify-space-between">
+    <div class="pt-4 pr-4 pl-4 text-body-1 font-weight-medium d-flex flex-row align-center justify-space-between" :class="getTitleClass()">
       {{ title }}
-      <v-icon class="amber--text text--lighten-3">
+      <v-icon :class="getTitleClass()">
         {{ titleIcon }}
       </v-icon>
     </div>
@@ -28,7 +28,9 @@ export default {
   props: {
     title: String,
     titleIcon: String,
-    imgSrc: String
+    imgSrc: String,
+    cardColor: String,
+    titleColor: String
   },
   data: () => ({
     //
@@ -36,6 +38,9 @@ export default {
   methods: {
     getImageUrl() {
       return require('../assets/images/' + this.imgSrc);
+    },
+    getTitleClass() {
+      return {[`${this.titleColor}--text text--lighten-3`]: true};
     }
   }
 }
