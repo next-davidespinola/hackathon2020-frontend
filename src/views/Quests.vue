@@ -17,18 +17,23 @@
       <v-divider class="border-bold grey"></v-divider>
       <div class="pa-4">
         <p class="text-body-1 font-weight-normal white--text text-left">Tienes {{ currentExp }} puntos</p>
-        <v-progress-linear value="15" rounded height="10" color="blue lighten-1"></v-progress-linear>
+        <v-progress-linear
+          :value="((500 - nextLevelExp) / 500) * 100"
+          rounded
+          height="10"
+          color="blue lighten-1"
+        ></v-progress-linear>
         <p class="mt-2 text-body-1 font-weight-normal white--text text-right">
           Sube de nivel con {{ currentExp + nextLevelExp }} puntos
         </p>
         <p class="mt-5 text-body-1 font-weight-medium grey--text text--lighten-5">
-          ¡Te faltan <b> {{ data.nextLevelExp }} puntos de experiencia </b> para alcanzar tu meta!
+          ¡Te faltan <b> {{ nextLevelExp }} puntos de experiencia </b> para alcanzar tu meta!
         </p>
       </div>
     </ImageInfoSection>
     <v-container id="questsContainer">
       <QuestInfoCard
-        @click="getRewards(quest)"
+        @click="getRewards(quest, index)"
         v-for="(quest, index) in data.quests"
         :key="index"
         :questDetail="quest"
@@ -64,8 +69,9 @@ export default {
     hasRewards: false
   }),
   methods: {
-    async getRewards(quest) {
+    async getRewards(quest, index) {
       await QuestService.getRewards(quest.id)
+      this.data.quests.splice(index, 1)
       this.currentExp = this.currentExp + quest.rewardExp
 
       if (quest.rewardExp >= this.nextLevelExp) {
