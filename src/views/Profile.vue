@@ -5,12 +5,12 @@
       Your browser does not support HTML5 video.
     </video>
     <UserInfoCard :user="player" />
-    <UserAvatar class="flex-grow-1" />
+    <UserAvatar v-if="player" :id="player.id" class="flex-grow-1" />
     <div class="options-container d-flex justify-space-between">
       <ProgressButton
         v-for="(item, index) in items"
         :key="index"
-        size="56"
+        size="60"
         width="5"
         :color="item.color"
         :icon="item.icon"

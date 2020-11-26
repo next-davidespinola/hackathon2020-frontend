@@ -1,14 +1,17 @@
 <template>
   <v-card
-    class=""
     rounded="xl"
     min-width="296"
     outlined
+    v-if="user"
   >
-    <v-list-item v-if="user">
-      <v-list-item-avatar
-        size="90"
-      >
+    <v-card-text class="pb-0">
+      <p class="black--text text-center text-h4 font-weight-regular mb-0 pb-0">
+        {{ user.name }} {{ user.lastName }}
+      </p>
+    </v-card-text>
+    <v-list-item>
+      <v-list-item-avatar class="mt-0" size="90">
         <ProgressButton
           :level="user.level"
           size="90"
@@ -18,10 +21,7 @@
           :currentValue="user.currentExp"
         />
       </v-list-item-avatar>
-      <v-list-item-content>
-        <v-list-item-title class="text-h4 font-weight-bold mb-1">
-          {{ user.nickName }}
-        </v-list-item-title>
+      <v-list-item-content class="pt-0">
         <div class="d-flex align-center text-body-1 font-weight-regular">
           <v-icon class="amber--text lighten-2 mr-1" small>
             mdi-cash-multiple
