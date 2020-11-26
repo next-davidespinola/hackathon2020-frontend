@@ -102,11 +102,15 @@ export default {
     },
     async openInventory() {
       const { default: component } = await import('./Inventory.vue')
-      const result = await openDialog(component, { backgroundColor: 'light-blue lighten-1', title: 'Mi mochila' }, {})
-      console.log('dialog closed with result:', result)
+      const changedItems = await openDialog(
+        component,
+        { backgroundColor: 'light-blue lighten-1', title: 'Mi mochila' },
+        { items: this.player.inventory }
+      )
+      if (changedItems) this.refresh()
     },
     async refresh() {
-      this.player = ProfileService.getPlayer(this.$route.query.id)
+      this.player = await ProfileService.getPlayer(this.$route.query.id)
     }
   }
 }

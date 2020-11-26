@@ -9,12 +9,14 @@
       :cardColor="'deep-purple darken-6'"
     >
       <div class="pb-4 pr-4 pl-4">
-        <p class="text-h4 white--text font-weight-medium"> 800 Gemas </p>
-        <p class="mt-5 font-weight-regular text-h6 grey--text text--lighten-3"> ¡Tus ahorros generan interés! Ganas <b> 8 Gemas </b> cada viernes </p>
+        <p class="text-h4 white--text font-weight-medium">800 Gemas</p>
+        <p class="mt-5 font-weight-regular text-h6 grey--text text--lighten-3">
+          ¡Tus ahorros generan interés! Ganas <b> 8 Gemas </b> cada viernes
+        </p>
       </div>
     </ImageInfoSection>
 
-    <v-container>
+    <v-container class="px-0">
       <v-row>
         <v-col v-for="(item, index) in items" :key="index" cols="6">
           <ShopItem v-bind="item" :disabled="!hasRequiredLevel(item)" button-text="Comprar" />
