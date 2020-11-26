@@ -1,5 +1,9 @@
 <template>
   <div class="white--text d-flex flex-column align-center profile-view-container pt-6 pb-6 pl-4 pr-4">
+    <video autoplay muted loop id="myVideo">
+      <source :src="getVideoUrl()" type="video/mp4">
+      Your browser does not support HTML5 video.
+    </video>
     <UserInfoCard />
     <UserAvatar class="flex-grow-1" />
     <div class="options-container d-flex justify-space-between">
@@ -66,6 +70,9 @@ export default {
     }
   },
   methods: {
+    getVideoUrl() {
+      return require('../assets/clouds.mp4');
+    },
     async openObjectives() {
       const { default: component } = await import('./Objectives.vue')
       const result = await openDialog(component, { backgroundColor: 'gold', title: 'Mis objetivos' }, {})
