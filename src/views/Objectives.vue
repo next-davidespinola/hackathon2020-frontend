@@ -48,22 +48,26 @@
       </v-list-item>
       <v-card-actions class="pa-0">
         <div class="d-flex justify-center mt-2">
-          <v-btn @click="$emit('click')" class="white--text" color="light-blue">
+          <!-- <v-btn @click="$emit('click')" class="white--text" color="light-blue">
             CAMBIAR OBJETIVO
-          </v-btn>
+          </v-btn> -->
+          <ChangeGoalDialog />
         </div>
       </v-card-actions>
     </v-card>
+
   </div>
 </template>
 
 <script>
 import ImageInfoSection from '@/components/ImageInfoSection.vue'
+import ChangeGoalDialog from '@/components/ChangeGoalDialog.vue'
 
 export default {
   name: 'Objectives',
   components: {
-    ImageInfoSection
+    ImageInfoSection,
+    ChangeGoalDialog
   },
   data: () => ({
     currentPoints: 80,
