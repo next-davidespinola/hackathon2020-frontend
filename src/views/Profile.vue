@@ -1,5 +1,7 @@
 <template>
-  <div class="white--text d-flex flex-column align-center justify-space-between profile-view-container pt-6 pb-6 pl-4 pr-4">
+  <div
+    class="white--text d-flex flex-column align-center justify-space-between profile-view-container pt-6 pb-6 pl-4 pr-4"
+  >
     <video v-if="backgroundId" autoplay muted loop id="myVideo">
       <source :src="getVideoUrl()" type="video/mp4" />
       Your browser does not support HTML5 video.
@@ -29,6 +31,7 @@ import ProgressButton from '@/components/ProgressButton.vue'
 import { openDialog } from '../components/dialog'
 import ProfileService from '@/services/ProfileService'
 import { getUsingItemResource } from '../utils/shopItemImages'
+import ShopService from '@/services/ShopService'
 
 export default {
   name: 'Profile',
@@ -80,15 +83,15 @@ export default {
   },
   computed: {
     backgroundId() {
-      const usedItem = ((this.player || {}).inventory || []).find((item) => {
-        return item.used && item.type === 'background';
+      const usedItem = ((this.player || {}).inventory || []).find(item => {
+        return item.used && item.type === 'background'
       })
-      return usedItem ? usedItem.id : null;
+      return usedItem ? usedItem.id : null
     }
   },
   methods: {
     getVideoUrl() {
-      return require('@/' + getUsingItemResource(this.backgroundId));
+      return require('@/' + getUsingItemResource(this.backgroundId))
     },
     async openObjectives() {
       const { default: component } = await import('./Objectives.vue')
@@ -96,13 +99,13 @@ export default {
       console.log('dialog closed with result:', result)
     },
     async openShop() {
-      const { default: component } = await import('./Shop.vue')
-      const result = await openDialog(
+      const [{ default: component }, items] = await Promise.all([import('./Shop.vue'), ShopService.getShopItems()])
+      const somethingPurchased = await openDialog(
         component,
         { backgroundColor: 'deep-purple', title: 'Mercado de gemas' },
-        { playerLevel: 3 }
+        { playerLevel: this.player.level, playerGems: this.player.gems, items }
       )
-      console.log('dialog closed with result:', result)
+      if (somethingPurchased) this.refresh()
     },
     async openQuests() {
       const { default: component } = await import('./Quests.vue')

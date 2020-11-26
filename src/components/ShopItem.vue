@@ -9,9 +9,9 @@
       <h3 class="text--h6 black--text text-center mb-1">{{ name }}</h3>
 
       <div v-if="requiredGems" class="d-flex justify-center">
-        <span class="deep-purple--text lighten-2">
+        <span :class="gemsAmmountColor">
           - {{ requiredGems }}
-          <v-icon small class="deep-purple--text lighten-2">
+          <v-icon small :class="gemsAmmountColor">
             mdi-diamond-stone
           </v-icon>
         </span>
@@ -50,6 +50,9 @@ export default {
   computed: {
     image() {
       return require('@/' + getShopItemImage(this.id))
+    },
+    gemsAmmountColor() {
+      return this.buttonDisabled ? 'red--text' : 'deep-purple--text lighten-2'
     }
   }
 }

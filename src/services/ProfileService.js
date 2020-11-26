@@ -1,10 +1,11 @@
 import axios from 'axios'
 
 const PROFILE_BASE_URL = 'http://rest-profile-bbva-kids.apps.cluster-a70f.a70f.example.opentlc.com/api/profiles'
-let playerId = null
+export let playerId = null
 
 export default {
   getPlayer,
+  getInventory,
   updateUsedItems
 }
 
