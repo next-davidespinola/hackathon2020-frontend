@@ -20,19 +20,38 @@
         <p class="mt-5 text-body-1 font-weight-medium grey--text text--lighten-5"> ¡Te faltan <b> 40 puntos de experiencia </b> para alcanzar tu meta! </p>
       </div>
     </ImageInfoSection>
+    <QuestInfoCard v-for="(item, index) in items" :key="index" :questDetail="item" />
   </div>
 </template>
 
 <script>
 import ImageInfoSection from '@/components/ImageInfoSection.vue'
+import QuestInfoCard from '@/components/QuestInfoCard.vue'
 
 export default {
   name: 'Quests',
   components: {
-    ImageInfoSection
+    ImageInfoSection,
+    QuestInfoCard
   },
   data: () => ({
-    imgSrc: 'experience.png'
+    imgSrc: 'experience.png',
+    items: [
+      {
+        id: 1,
+        done: true,
+        title: 'Pasear al perro a medio día',
+        gems: 10,
+        xp: 30
+      },
+      {
+        id: 2,
+        done: false,
+        title: 'Sacar los platos del lavavajillas',
+        gems: 20,
+        xp: 10
+      }
+    ]
   }),
   methods: {}
 }
