@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="d-flex flex-column align-center justify-center">
     <ImageInfoSection
       class="d-flex flex-column text-center"
       title="Mis gemas"
