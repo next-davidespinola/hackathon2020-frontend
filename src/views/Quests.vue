@@ -9,19 +9,30 @@
       :cardColor="'deep-green'"
     >
       <div class="pt-4 pr-4 pl-4">
-        <p class="text-h4 font-weight-medium"> Nivel 3 </p>
-        <p class="text-body-1 font-weight-medium grey--text text--lighten-5"> ¡Supera retos y gana puntos de experiencia y gemas! </p>
+        <p class="text-h4 font-weight-medium">Nivel {{ level }}</p>
+        <p class="text-body-1 font-weight-medium grey--text text--lighten-5">
+          ¡Supera retos y gana puntos de experiencia y gemas!
+        </p>
       </div>
       <v-divider class="border-bold grey"></v-divider>
       <div class="pa-4">
-        <p class="text-body-1 font-weight-normal white--text text-left"> Tienes 80 puntos </p>
+        <p class="text-body-1 font-weight-normal white--text text-left">Tienes {{ currentExp }} puntos</p>
         <v-progress-linear value="15" rounded height="10" color="blue lighten-1"></v-progress-linear>
-        <p class="mt-2 text-body-1 font-weight-normal white--text text-right"> Sube de nivel con 120 puntos </p>
-        <p class="mt-5 text-body-1 font-weight-medium grey--text text--lighten-5"> ¡Te faltan <b> 40 puntos de experiencia </b> para alcanzar tu meta! </p>
+        <p class="mt-2 text-body-1 font-weight-normal white--text text-right">
+          Sube de nivel con {{ currentExp + nextLevelExp }} puntos
+        </p>
+        <p class="mt-5 text-body-1 font-weight-medium grey--text text--lighten-5">
+          ¡Te faltan <b> {{ data.nextLevelExp }} puntos de experiencia </b> para alcanzar tu meta!
+        </p>
       </div>
     </ImageInfoSection>
     <v-container id="questsContainer">
-      <QuestInfoCard v-for="(item, index) in items" :key="index" :questDetail="item" />
+      <QuestInfoCard
+        @click="getRewards(quest)"
+        v-for="(quest, index) in data.quests"
+        :key="index"
+        :questDetail="quest"
+      />
     </v-container>
   </div>
 </template>
@@ -29,6 +40,7 @@
 <script>
 import ImageInfoSection from '@/components/ImageInfoSection.vue'
 import QuestInfoCard from '@/components/QuestInfoCard.vue'
+import QuestService from '@/services/QuestService'
 
 export default {
   name: 'Quests',
@@ -36,39 +48,37 @@ export default {
     ImageInfoSection,
     QuestInfoCard
   },
+  props: {
+    data: { type: Object, required: true }
+  },
+  mounted() {
+    this.level = this.data.level
+    this.currentExp = this.data.currentExp
+    this.nextLevelExp = this.data.nextLevelExp
+  },
   data: () => ({
     imgSrc: 'experience.png',
-    items: [
-      {
-        id: 1,
-        done: true,
-        title: 'Pasear al perro a medio día',
-        gems: 10,
-        xp: 30
-      },
-      {
-        id: 2,
-        done: false,
-        title: 'Sacar los platos del lavavajillas',
-        gems: 20,
-        xp: 10
-      },
-      {
-        id: 3,
-        done: true,
-        title: 'Pasear al perro a medio día fsdfs',
-        gems: 10,
-        xp: 30
-      },
-      {
-        id: 4,
-        done: false,
-        title: 'Sacar los platos del lavavajillas',
-        gems: 20,
-        xp: 10
-      }
-    ]
+    level: 0,
+    currentExp: 0,
+    nextLevelExp: 0,
+    hasRewards: false
   }),
-  methods: {}
+  methods: {
+    async getRewards(quest) {
+      await QuestService.getRewards(quest.id)
+      this.currentExp = this.currentExp + quest.rewardExp
+
+      if (quest.rewardExp >= this.nextLevelExp) {
+        this.level++
+        this.nextLevelExp = 500 - (quest.rewardExp - this.nextLevelExp)
+      } else {
+        this.nextLevelExp = this.nextLevelExp - quest.rewardExp
+      }
+      this.hasRewards = true
+    },
+    onClose() {
+      return this.hasRewards
+    }
+  }
 }
 </script>

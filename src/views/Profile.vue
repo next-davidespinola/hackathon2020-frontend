@@ -33,6 +33,7 @@ import ProfileService from '@/services/ProfileService'
 import { getUsingItemResource } from '../utils/shopItemImages'
 import ShopService from '@/services/ShopService'
 import ObjectivesService from '@/services/ObjectivesService'
+import QuestService from '@/services/QuestService'
 
 export default {
   name: 'Profile',
@@ -95,8 +96,15 @@ export default {
       return require('@/' + getUsingItemResource(this.backgroundId))
     },
     async openObjectives() {
-      const [{ default: component }, objectiveDetail] = await Promise.all([import('./Objectives.vue'), ObjectivesService.getObjective()])
-      const result = await openDialog(component, { backgroundColor: 'gold', title: 'Mis objetivos' }, {objectiveDetail, currentMoney: this.player.money})
+      const [{ default: component }, objectiveDetail] = await Promise.all([
+        import('./Objectives.vue'),
+        ObjectivesService.getObjective()
+      ])
+      const result = await openDialog(
+        component,
+        { backgroundColor: 'gold', title: 'Mis objetivos' },
+        { objectiveDetail, currentMoney: this.player.money }
+      )
       console.log('dialog closed with result:', result)
     },
     async openShop() {
@@ -109,9 +117,14 @@ export default {
       if (somethingPurchased) this.refresh()
     },
     async openQuests() {
-      const { default: component } = await import('./Quests.vue')
-      const result = await openDialog(component, { backgroundColor: 'green lighten-1', title: 'Mis misiones' }, {})
-      console.log('dialog closed with result:', result)
+      const [{ default: component }, quests] = await Promise.all([import('./Quests.vue'), QuestService.getQuests()])
+      const { level, currentExp, nextLevelExp } = this.player
+      const questCompleted = await openDialog(
+        component,
+        { backgroundColor: 'green lighten-1', title: 'Mis misiones' },
+        { quests, level, currentExp, nextLevelExp }
+      )
+      if (questCompleted) this.refresh()
     },
     async openInventory() {
       const { default: component } = await import('./Inventory.vue')

@@ -1,5 +1,4 @@
 import axios from 'axios'
-import sortBy from 'lodash/sortBy'
 
 const QUESTS_BASE_URL = 'http://rest-missions-bbva-kids.apps.cluster-a70f.a70f.example.opentlc.com/api/missions'
 
@@ -10,8 +9,8 @@ export default {
 }
 
 async function getQuests() {
-  const { objectives } = await axios.get(`${QUESTS_BASE_URL}`)
-  return sortBy(objectives, obj => -obj.id)[0]
+  const { data: quests } = await axios.get(`${QUESTS_BASE_URL}`)
+  return quests.filter(quest => !quest.claimed)
 }
 
 async function deleteQuest(id) {
@@ -19,5 +18,5 @@ async function deleteQuest(id) {
 }
 
 async function getRewards(id) {
-  console.log(id)
+  await axios.post(`${QUESTS_BASE_URL}/claim`, { id })
 }
