@@ -1,11 +1,11 @@
 <template>
-  <div class="white--text d-flex flex-column align-center profile-view-container pt-6 pb-6 pl-4 pr-4">
+  <div class="white--text d-flex flex-column align-center justify-space-between profile-view-container pt-6 pb-6 pl-4 pr-4">
     <video autoplay muted loop id="myVideo">
       <source :src="getVideoUrl()" type="video/mp4" />
       Your browser does not support HTML5 video.
     </video>
     <UserInfoCard :user="player" />
-    <UserAvatar v-if="player" :userId="player.id" :inventory="player.inventory" class="flex-grow-1" />
+    <UserAvatar v-if="player" :userId="player.id" :inventory="player.inventory" />
     <div class="options-container d-flex justify-space-between">
       <ProgressButton
         v-for="(item, index) in items"
