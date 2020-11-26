@@ -3,7 +3,7 @@
     <v-dialog v-model="open" persistent width="500">
       <template v-slot:activator="{ on, attrs }">
         <v-btn class="white--text" color="light-blue" v-bind="attrs" v-on="on">
-          CAMBIAR OBJETIVO
+          {{ title }}
         </v-btn>
       </template>
 
@@ -60,12 +60,13 @@ import ObjectivesService from '@/services/ObjectivesService'
 export default {
   name: 'ChangeGoalDialog',
   props: {
-    goalId: Number
+    goalId: Number,
+    title: String
   },
   data: () => ({
     open: false,
     goalDescription: '',
-    goalPrice: null,
+    goalPrice: null
   }),
   methods: {
     close() {
@@ -74,7 +75,7 @@ export default {
       this.open = false;
     },
     async save() {
-      await ObjectivesService.editObjective(this.goalId, this.goalDescription, this.goalPrice);
+      await ObjectivesService.editObjective(this.goalDescription, this.goalPrice, this.goalId);
       this.$emit('update', {
         name: this.goalDescription,
         price: this.goalPrice

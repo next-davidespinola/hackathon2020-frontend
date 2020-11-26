@@ -30,8 +30,9 @@
       rounded="xl"
       outlined
       max-width="421"
+      v-if="objective"
     >
-      <v-list-item v-if="objective">
+      <v-list-item>
         <v-list-item-content class="pa-0">
           <v-list-item-title class="text-h6 text-sm-h4 text-center font-weight-bold mb-7">
             {{ objective.name }}
@@ -46,10 +47,40 @@
           </div>
         </v-list-item-content>
       </v-list-item>
-      <v-card-actions v-if="objective" class="pa-0">
+      <v-card-actions class="pa-0">
         <div class="d-flex justify-center mt-2">
           <ChangeGoalDialog
+            :title="'Cambiar Objetivo'"
             :goalId="objective.id"
+            @update="updateObjective($event)"
+          />
+        </div>
+      </v-card-actions>
+    </v-card>
+    <v-card
+      class="mt-5 pa-3 d-flex flex-column align-center"
+      rounded="xl"
+      outlined
+      max-width="421"
+      v-else
+    >
+      <v-list-item>
+        <v-list-item-content class="pa-0">
+          <v-list-item-title class="text-h6 text-sm-h4 text-center font-weight-bold mb-7">
+            Sin Objetivo
+          </v-list-item-title>
+          <div>
+            <p class="mt-2 text-h6 font-weight-medium text-center grey--text text--darken-1">
+              ¡Crea un objetivo y empieza tu aventura!
+            </p>
+          </div>
+        </v-list-item-content>
+      </v-list-item>
+      <v-card-actions class="pa-0">
+        <div class="d-flex justify-center mt-2">
+          <ChangeGoalDialog
+            :title="'Crear Objetivo'"
+            :goalId="objective ? objective.id : null"
             @update="updateObjective($event)"
           />
         </div>
@@ -61,6 +92,7 @@
 <script>
 import ImageInfoSection from '@/components/ImageInfoSection.vue'
 import ChangeGoalDialog from '@/components/ChangeGoalDialog.vue'
+import ObjectivesService from '@/services/ObjectivesService'
 
 export default {
   name: 'Objectives',
@@ -93,10 +125,9 @@ export default {
     goalPrice: null
   }),
   methods: {
-    updateObjective(ev) {
-      this.objective.requiredMoney = ev.price;
-      this.objective.name = ev.name;
-      this.objective.id++;
+    async updateObjective(ev) {
+      const response = await ObjectivesService.getObjective();
+      this.objective = response;
     }
   }
 }

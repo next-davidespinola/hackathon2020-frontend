@@ -14,9 +14,9 @@ async function getObjective() {
   return sortBy(data, obj => -obj.id)[0]
 }
 
-async function editObjective(id, name, requiredMoney) {
+async function editObjective(name, requiredMoney, id) {
   await createObjective(name, requiredMoney)
-  await axios.delete(`${OBJECTIVES_BASE_URL}/${id}`)
+  if (id) await axios.delete(`${OBJECTIVES_BASE_URL}/${id}`)
 }
 
 async function createObjective(name, requiredMoney) {
