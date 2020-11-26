@@ -73,7 +73,11 @@ export default {
     },
     async openShop() {
       const { default: component } = await import('./Shop.vue')
-      const result = await openDialog(component, { backgroundColor: 'deep-purple', title: 'Mercado de gemas' }, {})
+      const result = await openDialog(
+        component,
+        { backgroundColor: 'deep-purple', title: 'Mercado de gemas' },
+        { playerLevel: 3 }
+      )
       console.log('dialog closed with result:', result)
     },
     async openQuests() {
