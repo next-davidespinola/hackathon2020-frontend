@@ -4,7 +4,7 @@
       <source :src="getVideoUrl()" type="video/mp4" />
       Your browser does not support HTML5 video.
     </video>
-    <UserInfoCard />
+    <UserInfoCard :user="player" />
     <UserAvatar class="flex-grow-1" />
     <div class="options-container d-flex justify-space-between">
       <ProgressButton
@@ -49,29 +49,29 @@ export default {
         {
           color: 'amber lighten-2',
           icon: 'mdi-bullseye-arrow',
-          maxValue: 100,
-          currentValue: 70,
+          maxValue: 1,
+          currentValue: 1,
           onclick: this.openObjectives
         },
         {
           color: 'deep-purple lighten-2',
           icon: 'mdi-cart',
-          maxValue: 100,
-          currentValue: 100,
+          maxValue: 1,
+          currentValue: 1,
           onclick: this.openShop
         },
         {
           color: 'green lighten-1',
           icon: 'mdi-flag-checkered',
-          maxValue: 10,
-          currentValue: 5,
+          maxValue: 1,
+          currentValue: 1,
           onclick: this.openQuests
         },
         {
           color: 'light-blue lighten-3',
           icon: 'mdi-bag-personal',
-          maxValue: 100,
-          currentValue: 30,
+          maxValue: 1,
+          currentValue: 1,
           onclick: this.openInventory
         }
       ]

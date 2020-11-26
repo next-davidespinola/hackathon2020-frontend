@@ -19,7 +19,7 @@
 export default {
   name: 'ProgressButton',
   props: {
-    level: String,
+    level: Number,
     color: String,
     size: String,
     width: String,
