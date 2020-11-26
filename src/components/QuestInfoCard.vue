@@ -41,8 +41,7 @@ export default {
   }),
   methods: {
     getImageUrl() {
-      const url = `../assets/images/${this.questDetail.done ? 'done.svg' : 'todo.svg'}`;
-      return require('../assets/images/todo.svg');
+      return require(this.questDetail.done ? '../assets/images/done.svg' : '../assets/images/todo.svg');
     }
   }
 }

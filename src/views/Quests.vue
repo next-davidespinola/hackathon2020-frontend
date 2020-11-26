@@ -50,6 +50,20 @@ export default {
         title: 'Sacar los platos del lavavajillas',
         gems: 20,
         xp: 10
+      },
+      {
+        id: 3,
+        done: true,
+        title: 'Pasear al perro a medio día fsdfs',
+        gems: 10,
+        xp: 30
+      },
+      {
+        id: 4,
+        done: false,
+        title: 'Sacar los platos del lavavajillas',
+        gems: 20,
+        xp: 10
       }
     ]
   }),
