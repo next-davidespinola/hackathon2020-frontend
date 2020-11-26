@@ -1,7 +1,7 @@
 <template>
   <div class="white--text d-flex flex-column align-center profile-view-container pt-6 pb-6 pl-4 pr-4">
     <UserInfoCard />
-    <UserAvatar class="flex-grow-1"/>
+    <UserAvatar class="flex-grow-1" />
     <div class="options-container d-flex justify-space-between">
       <ProgressButton
         v-for="(item, index) in items"
@@ -60,26 +60,30 @@ export default {
           icon: 'mdi-bag-personal',
           maxValue: 100,
           currentValue: 30,
-          onclick: this.openBackpack
+          onclick: this.openInventory
         }
       ]
     }
   },
   methods: {
     async openObjectives() {
-      const result = await openDialog(UserAvatar, { backgroundColor: 'gold', title: 'Mis objetivos' }, {})
+      const { default: component } = await import('./Objectives.vue')
+      const result = await openDialog(component, { backgroundColor: 'gold', title: 'Mis objetivos' }, {})
       console.log('dialog closed with result:', result)
     },
     async openShop() {
-      const result = await openDialog(UserAvatar, { backgroundColor: 'deep-purple', title: 'Mercado de gemas' }, {})
+      const { default: component } = await import('./Shop.vue')
+      const result = await openDialog(component, { backgroundColor: 'deep-purple', title: 'Mercado de gemas' }, {})
       console.log('dialog closed with result:', result)
     },
     async openQuests() {
-      const result = await openDialog(UserAvatar, { backgroundColor: 'green lighten-1', title: 'Mis misiones' }, {})
+      const { default: component } = await import('./Quests.vue')
+      const result = await openDialog(component, { backgroundColor: 'green lighten-1', title: 'Mis misiones' }, {})
       console.log('dialog closed with result:', result)
     },
-    async openBackpack() {
-      const result = await openDialog(UserAvatar, { backgroundColor: 'light-blue lighten-1', title: 'Mi mochila' }, {})
+    async openInventory() {
+      const { default: component } = await import('./Inventory.vue')
+      const result = await openDialog(component, { backgroundColor: 'light-blue lighten-1', title: 'Mi mochila' }, {})
       console.log('dialog closed with result:', result)
     }
   }
