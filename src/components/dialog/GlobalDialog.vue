@@ -8,7 +8,7 @@
         </v-btn>
       </v-card-title>
       <v-card-text>
-        <component :is="content" :data="data" @close="close($event)" />
+        <component ref="child" :is="content" :data="data" @close="close($event)" />
       </v-card-text>
     </v-card>
   </v-dialog>
@@ -35,7 +35,9 @@ export default {
     }
   },
   methods: {
-    close(result) {
+    async close($event) {
+      let result = $event
+      if (!$event && this.$refs.child.onClose) result = await this.$refs.child.onClose()
       closeDialog(result)
     }
   },

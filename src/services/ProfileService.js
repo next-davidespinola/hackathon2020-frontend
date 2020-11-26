@@ -23,16 +23,24 @@ async function getInventory() {
 }
 
 async function updateUsedItems(oldItem1, newItem1, oldItem2, newItem2) {
+  let somethingChanged = false
   const changeOldPromises = []
   const changeNewPromises = []
 
-  if (oldItem1 !== newItem1)
-    changeOldPromises.push(this.updateUsedItem(oldItem1, false), updateUsedItem(newItem1, true))
-  if (oldItem2 !== newItem2)
-    changeNewPromises.push(this.updateUsedItem(oldItem2, false), updateUsedItem(newItem2, true))
+  if (oldItem1 !== newItem1) {
+    if (oldItem1) changeOldPromises.push(updateUsedItem(oldItem1, false))
+    changeNewPromises.push(updateUsedItem(newItem1, true))
+    somethingChanged = true
+  }
+  if (oldItem2 !== newItem2) {
+    if (oldItem2) changeNewPromises.push(updateUsedItem(oldItem2, false))
+    changeNewPromises.push(updateUsedItem(newItem2, true))
+    somethingChanged = true
+  }
 
   await Promise.all(changeOldPromises)
   await Promise.all(changeNewPromises)
+  return somethingChanged
 }
 
 async function getProfile() {
@@ -41,6 +49,6 @@ async function getProfile() {
 }
 
 async function updateUsedItem(itemId, used) {
-  const { data } = await axios.put(`${PROFILE_BASE_URL}/${playerId}/inventory/${itemId}`, { used })
+  const { data } = await axios.patch(`${PROFILE_BASE_URL}/${playerId}/inventory/${itemId}`, { used })
   return data
 }
