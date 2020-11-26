@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48px" height="48px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>task/todo</title>
+    <g id="task/todo" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="reloj">
+            <circle id="Oval" fill="#FFC247" cx="24" cy="24" r="24"></circle>
+            <circle id="Oval" fill="#FFFFFF" cx="24" cy="24" r="19"></circle>
+            <path d="M14.0232187,16.0119375 L16.0119375,14.0232187 L24,22.0112812 L27.9774375,25.9887187 L25.9887187,27.9774375 L24,25.9887187 L14.0232187,16.0119375 Z" id="Combined-Shape" fill="#837454" fill-rule="nonzero"></path>
+            <path d="M22.0112813,27.9774375 L20.0225625,25.9887187 L32.0213438,13.9900312 L34.0099688,15.9786562 L22.0112813,27.9774375 Z" id="Combined-Shape" fill="#6C5E41" fill-rule="nonzero"></path>
+            <polygon id="Path" fill="#837454" fill-rule="nonzero" transform="translate(24.500000, 8.500000) rotate(-90.000000) translate(-24.500000, -8.500000) " points="23 7 26 7 26 10 23 10"></polygon>
+            <polygon id="Path" fill="#837454" fill-rule="nonzero" transform="translate(24.500000, 40.500000) rotate(-90.000000) translate(-24.500000, -40.500000) " points="23 39 26 39 26 42 23 42"></polygon>
+            <polygon id="Path" fill="#837454" fill-rule="nonzero" transform="translate(8.500000, 24.500000) rotate(-90.000000) translate(-8.500000, -24.500000) " points="7 23 10 23 10 26 7 26"></polygon>
+            <polygon id="Path" fill="#837454" fill-rule="nonzero" transform="translate(40.500000, 24.500000) rotate(-90.000000) translate(-40.500000, -24.500000) " points="39 23 42 23 42 26 39 26"></polygon>
+        </g>
+    </g>
+</svg>
