@@ -1,6 +1,7 @@
 <template>
-  <v-container class="d-flex flex-column align-center">
-    <v-img contain src="../assets/images/avatar.svg"></v-img>
+  <v-container class="user-avatar-container d-flex flex-column align-center">
+    <v-img id="avatar" contain src="../assets/images/avatar.svg"></v-img>
+    <v-img id="pet" contain src="../assets/images/cat.svg"></v-img>
   </v-container>
 </template>
 

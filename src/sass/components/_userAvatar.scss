@@ -1,0 +1,61 @@
+.user-avatar-container{
+  #avatar {
+    position: relative;
+    top: 0;
+    left: 0;
+  }
+  /* Extra small devices (phones, 600px and down) */
+  @media only screen and (max-width: 500px) {
+    #pet {
+      position: absolute;
+      top: 60%;
+      left: 2%;
+    }
+  }
+
+  /* Extra small devices (phones, 600px and down) */
+  @media only screen and (min-width: 400px) {
+    #pet {
+      position: absolute;
+      top: 60%;
+      left: 15%;
+    }
+  }
+
+  /* Small devices (portrait tablets and large phones, 600px and up) */
+  @media only screen and (min-width: 500px) {
+    #pet {
+      position: absolute;
+      top: 60%;
+      left: 20%;
+    }
+  }
+
+  /* Medium devices (landscape tablets, 768px and up) */
+  @media only screen and (min-width: 700px) {
+    #pet {
+      position: absolute;
+      top: 60%;
+      left: 30%;
+    }
+  }
+
+  /* Large devices (laptops/desktops, 992px and up) */
+  @media only screen and (min-width: 992px) {
+    #pet {
+      position: absolute;
+      top: 60%;
+      left: 39%;
+    }
+  }
+
+  /* Extra large devices (large laptops and desktops, 1200px and up) */
+  @media only screen and (min-width: 1200px) {
+    #pet {
+      position: absolute;
+      top: 60%;
+      left: 41%;
+    }
+  }
+
+}
