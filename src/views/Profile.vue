@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="white--text d-flex flex-column align-center justify-space-between profile-view-container pt-6 pb-6 pl-4 pr-4"
-  >
+  <div class="white--text d-flex flex-column align-center justify-space-between profile-view-container pt-6 pb-6 pl-4 pr-4 blue lighten-5">
     <video v-if="backgroundId" :key="backgroundId" autoplay muted loop id="myVideo">
       <source :src="getVideoUrl()" type="video/mp4" />
       Your browser does not support HTML5 video.
