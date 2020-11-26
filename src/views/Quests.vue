@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex flex-column align-center justify-center">
+  <div class="quests-view-container d-flex flex-column align-center justify-center">
     <ImageInfoSection
       class="d-flex flex-column text-center"
       title="Mi nivel"
@@ -20,7 +20,9 @@
         <p class="mt-5 text-body-1 font-weight-medium grey--text text--lighten-5"> ¡Te faltan <b> 40 puntos de experiencia </b> para alcanzar tu meta! </p>
       </div>
     </ImageInfoSection>
-    <QuestInfoCard v-for="(item, index) in items" :key="index" :questDetail="item" />
+    <v-container id="questsContainer">
+      <QuestInfoCard v-for="(item, index) in items" :key="index" :questDetail="item" />
+    </v-container>
   </div>
 </template>
 

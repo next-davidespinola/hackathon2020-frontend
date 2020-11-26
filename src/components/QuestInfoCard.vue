@@ -4,9 +4,9 @@
     rounded="xl"
     outlined
   >
-    <div class="d-flex align-center justify-center">
-      <v-img class="flex-grow-1 align-self-start mr-5" max-width="44" :src="getImageUrl()"></v-img>
-      <div class="flex-grow-3 pa-0">
+    <div class="d-flex align-center">
+      <v-img class="align-self-start mr-5" max-width="44" :src="getImageUrl()"></v-img>
+      <div class="pa-0">
         <p class="text-left font-weight-bold mb-2">
           {{ questDetail.title }}
         </p>
