@@ -3,6 +3,17 @@
   background-color: #A0811E !important;
 }
 
+.gold {
+  &--text {
+    color: #A0811E !important;
+  }
+  background-color: #A0811E !important;
+}
+
+.gold.darken-5 {
+  background-color: #a0811e !important;
+}
+
 .gold.darken-6 {
   background-color: #604C11 !important;
 }
